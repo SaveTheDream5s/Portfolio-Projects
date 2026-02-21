@@ -1,38 +1,26 @@
-let people = [];
+let population = [];
 
 function setup() {
 createCanvas(windowWidth, windowHeight);
-for (let i = 0; i < 50; i++) {
-people.push(new Person());
+for (let i = 0; i < 100; i++) {
+population.push({
+x: random(width),
+y: random(height),
+vx: random(-2, 2),
+vy: random(-2, 2)
+});
 }
 }
 
 function draw() {
-background(40);
-for (let p of people) {
-p.update();
-p.show();
-}
-}
-
-class Person {
-constructor() {
-this.x = random(400);
-this.y = random(400);
-this.speedX = random(-1, 1);
-this.speedY = random(-1, 1);
-}
-update() {
-this.x += this.speedX;
-this.y += this.speedY;
-if (this.x > width) this.x = 0;
-if (this.x < 0) this.x = width;
-if (this.y > height) this.y = 0;
-if (this.y < 0) this.y = height;
-}
-show() {
+background(30);
 fill(0, 200, 255);
 noStroke();
-circle(this.x, this.y, 10);
+
+for (let p of population) {
+circle(p.x, p.y, 10);
+p.x += p.vx;
+p.y += p.vy;
+
 }
 }
